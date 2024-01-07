@@ -3,7 +3,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "0.*", "1.*"]
   pull_request:
     branches: ["main"]
 
@@ -20,3 +20,13 @@ jobs:
       - run: sudo apt-get install tree
         shell: bash
       - run: tree
+      - name: Publish Release
+        if: github.ref == 'refs/heads/0.*' || github.ref == 'refs/heads/1.*'
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "test.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
+          draft: false
+          tag: ${{ github.ref }}
+      
