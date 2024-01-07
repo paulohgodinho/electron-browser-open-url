@@ -22,5 +22,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npx electron-forge package
-    - run: apt-get install tree
+    - run: sudo apt-get install tree
     - run: tree
