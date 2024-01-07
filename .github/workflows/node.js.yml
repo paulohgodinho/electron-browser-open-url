@@ -21,4 +21,6 @@ jobs:
         node-version: 20.x
         cache: 'npm'
     - run: npm ci
-    - run: npm run electron-forge package
+    - run: npx electron-forge package
+    - run: apt-get install tree
+    - run: tree
