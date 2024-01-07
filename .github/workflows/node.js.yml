@@ -25,6 +25,7 @@ jobs:
         with:
           artifacts: "test.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
           prerelease: true
           allowUpdates: true
       
