@@ -18,7 +18,7 @@ jobs:
         with:
           zip-name: "test.zip"
       - name: Publish Release
-        if: startsWith(github.ref, 'refs/heads/0.*') || startsWith(github.ref, 'refs/heads/1.*')
+        if: startsWith(github.ref, 'refs/heads/0.') || startsWith(github.ref, 'refs/heads/1.')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "test.zip"
