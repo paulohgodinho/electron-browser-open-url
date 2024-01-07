@@ -17,11 +17,8 @@ jobs:
         uses: ./.github/workflows/actions/build-and-zip
         with:
           zip-name: "test.zip"
-      - run: sudo apt-get install tree
-        shell: bash
-      - run: tree
       - name: Publish Release
-        if: github.ref == 'refs/heads/0.*' || github.ref == 'refs/heads/1.*'
+        if: startsWith(github.ref, 'refs/heads/0.*') || startsWith(github.ref, 'refs/heads/1.*')
         uses: ncipollo/release-action@v1
         with:
           artifacts: "test.zip"
@@ -29,4 +26,5 @@ jobs:
           prerelease: true
           draft: false
           tag: ${{ github.ref }}
+          allowUpdates: true
       
