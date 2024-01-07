@@ -17,12 +17,6 @@ runs:
       shell: bash
     - run: npx electron-forge package
       shell: bash
-    - run: sudo apt-get install tree
-      shell: bash
-    - run: tree
-      shell: bash
-    - run: echo "Testing!"
-      shell: bash
     - name: Zip the build
       uses: thedoctor0/zip-release@0.7.5
       with:
