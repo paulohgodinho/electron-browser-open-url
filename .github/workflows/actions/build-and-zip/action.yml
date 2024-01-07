@@ -1,23 +1,31 @@
 ---
-
-    name: 'Build and Zip'
-    description: 'Builds and zips the project'
-    runs:
-      using: "composite"
-      steps:
-        - name: Use Node.js 20.x
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20.x
-            cache: 'npm'
-        - run: npm ci
-          shell: bash
-        - run: npx electron-forge package
-          shell: bash
-        - run: sudo apt-get install tree
-          shell: bash
-        - run: tree
-          shell: bash
-        - run: echo "Testing!"
-          shell: bash
-    
+name: "Build and Zip"
+description: "Builds and zips the project"
+inputs:
+  zip-name:
+    description: "Name of the zipped file"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: "npm"
+    - run: npm ci
+      shell: bash
+    - run: npx electron-forge package
+      shell: bash
+    - run: sudo apt-get install tree
+      shell: bash
+    - run: tree
+      shell: bash
+    - run: echo "Testing!"
+      shell: bash
+    - name: Zip the build
+      uses: thedoctor0/zip-release@0.7.5
+      with:
+        type: "zip"
+        filename: "${{ inputs.zip-name }}"
+        path: "./out/"
