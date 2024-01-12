@@ -4,7 +4,11 @@
     on:
       workflow_dispatch:
       push:
-        branches: ["main", "0.*", "1.*"]
+        branches:
+        - "main"
+        tags:
+          - "0.*"
+          - "1.*"
       pull_request:
         branches: ["main"]
     
