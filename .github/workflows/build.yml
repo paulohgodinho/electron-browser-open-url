@@ -2,6 +2,7 @@
     name: Build
     
     on:
+      workflow_dispatch:
       push:
         branches: ["main", "0.*", "1.*"]
       pull_request:
@@ -31,7 +32,7 @@
             uses: ./.github/workflows/actions/build-and-zip
             with:
               zip-name: "electron-browser-open-url-${{ matrix.os-name }}-${{ github.ref_name }}.zip"
-              
+
           - name: Publish Release
             if: startsWith(github.ref, 'refs/heads/0.') || startsWith(github.ref, 'refs/heads/1.')
             uses: ncipollo/release-action@v1
