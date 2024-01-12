@@ -16,10 +16,13 @@
             include:
               - os: "ubuntu-latest"
                 os-name: "linux-x64"
+                arch: "x64"
               - os: "windows-latest"
                 os-name: "windows-x64"
+                arch: "x64"
               - os: "macos-latest"
-                os-name: "macos-arm64"
+                os-name: "macos-universal"
+                arch: "universal"
         runs-on: ${{ matrix.os }}
 
         steps:
@@ -28,6 +31,7 @@
             uses: ./.github/workflows/actions/build-and-zip
             with:
               zip-name: "electron-browser-open-url-${{ matrix.os-name }}-${{ github.ref_name }}.zip"
+              
           - name: Publish Release
             if: startsWith(github.ref, 'refs/heads/0.') || startsWith(github.ref, 'refs/heads/1.')
             uses: ncipollo/release-action@v1

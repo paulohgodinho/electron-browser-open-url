@@ -5,6 +5,9 @@ inputs:
   zip-name:
     description: "Name of the zipped file"
     required: true
+  arch:
+    description: "Architecture of the build"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -15,7 +18,7 @@ runs:
         cache: "npm"
     - run: npm ci
       shell: bash
-    - run: npx electron-forge package
+    - run: npx electron-forge package --arch ${{ inputs.arch }}
       shell: bash
     - name: Zip the build
       uses: thedoctor0/zip-release@0.7.5
