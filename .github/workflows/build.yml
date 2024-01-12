@@ -44,7 +44,7 @@
               zip-name: "electron-browser-open-url-${{ matrix.os-name }}-${{ github.ref_name }}.zip"
               arch: ${{ matrix.arch }}
           - name: Publish Release
-            if: startsWith(github.ref, 'refs/heads/0.') || startsWith(github.ref, 'refs/heads/1.')
+            if: startsWith(github.ref, 'refs/tags/0.') || startsWith(github.ref, 'refs/tags/1.')
             uses: ncipollo/release-action@v1
             with:
               artifacts: "electron-browser-open-url-${{ matrix.os-name }}-${{ github.ref_name }}.zip"
