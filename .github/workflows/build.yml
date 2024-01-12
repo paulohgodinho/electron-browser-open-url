@@ -28,6 +28,12 @@
               - os: "macos-latest"
                 os-name: "macos-universal"
                 arch: "universal"
+              - os: "macos-latest"
+                os-name: "macos-x64"
+                arch: "x64"
+              - os: "macos-latest"
+                os-name: "macos-arm64"
+                arch: "arm64"
         runs-on: ${{ matrix.os }}
 
         steps:
